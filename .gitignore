@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment files & private secrets
+.env
+.env.local
+.env.*.local
+
+# Vercel deployment cache
+.vercel/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.log

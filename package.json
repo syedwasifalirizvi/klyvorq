@@ -1,0 +1,20 @@
+{
+  "name": "klyvorq",
+  "version": "1.0.0",
+  "description": "KLYVORQ - Smart tools. Simple solutions.",
+  "type": "module",
+  "scripts": {
+    "start": "serve .",
+    "test": "node test-suite.js"
+  },
+  "keywords": [
+    "tools",
+    "calculators",
+    "freelance",
+    "business",
+    "marketing",
+    "privacy"
+  ],
+  "author": "KLYVORQ",
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+# KLYVORQ Robots.txt
+User-agent: *
+Allow: /
+
+# Disallow internal API routes
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://klyvorq.vercel.app/sitemap.xml

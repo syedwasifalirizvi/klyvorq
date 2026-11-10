@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance Rate Calculator — Hourly &amp; Daily Target Estimator | KLYVORQ</title>
+  <meta name="description" content="Calculate your ideal freelance hourly and daily billable rates based on desired take-home income, business expenses, estimated taxes, and billable hours.">
+  <link rel="canonical" href="https://klyvorq.vercel.app/tools/freelance-rate-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://klyvorq.vercel.app/tools/freelance-rate-calculator/">
+  <meta property="og:title" content="Freelance Rate Calculator — Hourly &amp; Daily Target Estimator | KLYVORQ">
+  <meta property="og:description" content="Calculate your ideal freelance hourly and daily billable rates based on desired take-home income, business expenses, and taxes.">
+  <meta property="og:site_name" content="KLYVORQ">
+  <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicons -->
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/img/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <script src="/assets/js/config.js"></script>
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Freelance Rate Calculator",
+        "operatingSystem": "All modern browsers",
+        "applicationCategory": "BusinessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Calculate hourly, daily, and monthly billing rates based on net income requirements, taxes, and overhead."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://klyvorq.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tools",
+            "item": "https://klyvorq.vercel.app/tools/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Freelance Rate Calculator",
+            "item": "https://klyvorq.vercel.app/tools/freelance-rate-calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Global Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+      <a href="/" class="brand" aria-label="KLYVORQ Homepage">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">KLYVORQ</span>
+          <span class="brand-tagline-micro">Smart tools</span>
+        </div>
+      </a>
+
+      <nav role="navigation" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/tools/" class="nav-link active">Tools</a></li>
+          <li><a href="/category/" class="nav-link">Categories</a></li>
+          <li><a href="/about/" class="nav-link">About</a></li>
+          <li><a href="/contact/" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" aria-label="Open search dialog (Ctrl + K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="search-label">Search</span>
+          <kbd class="kbd-shortcut">Ctrl K</kbd>
+        </button>
+
+        <button type="button" class="btn-icon theme-toggle-btn" aria-label="Switch theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section">
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item"><a href="/category/freelancer-tools/">Freelancer Tools</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item active" aria-current="page">Freelance Rate Calculator</li>
+        </ol>
+      </nav>
+
+      <!-- Tool Header -->
+      <header class="tool-header">
+        <div class="tool-badge-row">
+          <span class="badge">Freelancer Tool</span>
+          <span class="badge badge-sand">Live Calculation</span>
+          <span class="badge badge-sand">Client-Side Processing</span>
+        </div>
+        <h1 class="tool-header-title" style="margin-top:0.75rem;">Freelance Rate Calculator</h1>
+        <p class="tool-header-lead">
+          Calculate your sustainable hourly, daily, weekly, and monthly rates. This calculator accounts for your target take-home salary, operational expenses, estimated tax obligations, vacation time, and realistic billable client hours.
+        </p>
+      </header>
+
+      <!-- Ad Placement 1: After Tool Header -->
+      <div class="ad-container" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot" data-slot-key="TOOL_AFTER_HEADER">
+          <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+        </div>
+      </div>
+
+      <!-- Tool Workspace Grid -->
+      <div class="tool-workspace">
+        <!-- Input Form Panel -->
+        <section class="tool-input-card" aria-labelledby="inputs-heading">
+          <h2 id="inputs-heading" style="font-size: 1.25rem; margin-bottom: 1.5rem;">Income &amp; Expense Parameters</h2>
+
+          <form id="freelance-rate-form" onsubmit="event.preventDefault();">
+            <div class="input-row-2">
+              <!-- Desired Net Income -->
+              <div class="form-group">
+                <label for="desired-income" class="form-label">
+                  <span>Desired Net Annual Income</span>
+                </label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="desired-income" class="form-control input-has-prefix" value="75000" min="1000" step="1000" required>
+                </div>
+                <div class="form-hint">Take-home money in your personal bank account.</div>
+              </div>
+
+              <!-- Annual Business Expenses -->
+              <div class="form-group">
+                <label for="business-expenses" class="form-label">
+                  <span>Annual Business Expenses</span>
+                </label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="business-expenses" class="form-control input-has-prefix" value="12000" min="0" step="500">
+                </div>
+                <div class="form-hint">Software subscriptions, hardware, health insurance, accountant.</div>
+              </div>
+            </div>
+
+            <div class="input-row-2">
+              <!-- Estimated Taxes -->
+              <div class="form-group">
+                <label for="tax-rate" class="form-label">
+                  <span>Estimated Tax Rate (%)</span>
+                </label>
+                <div class="input-prefix-group">
+                  <input type="number" id="tax-rate" class="form-control input-has-suffix" value="28" min="0" max="90" step="1" required>
+                  <span class="input-suffix">%</span>
+                </div>
+                <div class="form-hint">Self-employment + income tax rate combined.</div>
+              </div>
+
+              <!-- Non-working Weeks -->
+              <div class="form-group">
+                <label for="weeks-off" class="form-label">
+                  <span>Weeks Off Per Year</span>
+                </label>
+                <div class="input-prefix-group">
+                  <input type="number" id="weeks-off" class="form-control input-has-suffix" value="4" min="0" max="50" step="0.5" required>
+                  <span class="input-suffix">wks</span>
+                </div>
+                <div class="form-hint">Vacation, sick days, public holidays (52 wks total).</div>
+              </div>
+            </div>
+
+            <div class="input-row-2">
+              <!-- Billable Hours Per Week -->
+              <div class="form-group">
+                <label for="billable-hours" class="form-label">
+                  <span>Billable Hours / Week</span>
+                </label>
+                <div class="input-prefix-group">
+                  <input type="number" id="billable-hours" class="form-control input-has-suffix" value="25" min="1" max="80" step="1" required>
+                  <span class="input-suffix">hrs</span>
+                </div>
+                <div class="form-hint">Hours spent directly on client work (typically 20-30 hrs).</div>
+              </div>
+
+              <!-- Working Days Per Week -->
+              <div class="form-group">
+                <label for="days-per-week" class="form-label">
+                  <span>Working Days / Week</span>
+                </label>
+                <div class="input-prefix-group">
+                  <input type="number" id="days-per-week" class="form-control input-has-suffix" value="5" min="1" max="7" step="1" required>
+                  <span class="input-suffix">days</span>
+                </div>
+                <div class="form-hint">Used to compute your recommended daily day rate.</div>
+              </div>
+            </div>
+
+            <div class="tool-action-bar">
+              <button type="button" id="btn-reset" class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                <span>Reset to Defaults</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Result Card Panel -->
+        <aside class="tool-result-card" aria-labelledby="results-heading">
+          <div class="result-card-header">
+            <h2 id="results-heading" class="result-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Recommended Target</span>
+            </h2>
+          </div>
+
+          <!-- Hero Rate Result -->
+          <div class="hero-result-stat">
+            <div class="hero-result-label">Recommended Billable Rate</div>
+            <div class="hero-result-value" id="out-hourly-rate">$97</div>
+            <div class="hero-result-sub">per billable client hour</div>
+          </div>
+
+          <!-- Breakdown List -->
+          <div class="result-breakdown-list">
+            <div class="result-row">
+              <span class="result-row-label">Recommended Day Rate:</span>
+              <span class="result-row-val" id="out-daily-rate">$484</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-label">Weekly Revenue Target:</span>
+              <span class="result-row-val" id="out-weekly-target">$2,420</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-label">Monthly Target:</span>
+              <span class="result-row-val" id="out-monthly-target">$9,680</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-label">Gross Annual Revenue Needed:</span>
+              <span class="result-row-val" id="out-gross-annual">$116,167</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-label">Estimated Tax Reserve:</span>
+              <span class="result-row-val" id="out-tax-amount">$29,167</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-label">Annual Billable Hours:</span>
+              <span class="result-row-val" id="out-billable-hours-year">1,200 hrs</span>
+            </div>
+          </div>
+
+          <button type="button" id="btn-copy" class="btn btn-primary copy-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Rate Summary</span>
+          </button>
+        </aside>
+      </div>
+
+      <!-- Ad Placement 2: After Tool Workspace -->
+      <div class="ad-container" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot" data-slot-key="TOOL_AFTER_WORKSPACE">
+          <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+        </div>
+      </div>
+
+      <!-- Editorial & Transparent Mathematical Explanation -->
+      <section class="tool-editorial" aria-labelledby="how-it-works-heading">
+        <h2 id="how-it-works-heading">How This Calculator Works</h2>
+        <p>
+          Unlike naive calculators that simply divide your desired income by 2,000 hours, KLYVORQ accounts for the financial reality of running an independent business: taxes, overhead expenses, non-working downtime, and non-billable administrative hours.
+        </p>
+
+        <div class="formula-box">
+          <div class="formula-step"><strong>1. Pre-Tax Revenue Target</strong> = Desired Net Income ÷ (1 - Tax Rate%)</div>
+          <div class="formula-step"><strong>2. Gross Annual Target</strong> = Pre-Tax Revenue Target + Annual Expenses</div>
+          <div class="formula-step"><strong>3. Working Weeks</strong> = 52 - Non-Working Weeks</div>
+          <div class="formula-step"><strong>4. Total Billable Hours</strong> = Working Weeks &times; Billable Hours Per Week</div>
+          <div class="formula-step"><strong>5. Recommended Hourly Rate</strong> = Gross Annual Target ÷ Total Billable Hours</div>
+        </div>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Why Are Billable Hours Lower Than Working Hours?</h3>
+        <p>
+          If you work a 40-hour week, roughly 10 to 15 of those hours are taken up by non-billable overhead: responding to client inquiries, writing proposals, issuing invoices, marketing your portfolio, and managing technology.
+        </p>
+        <p>
+          If you calculate your hourly rate assuming 40 billable hours every week, you will invariably experience severe income shortfalls when client projects end or when administrative demands spike. Setting a conservative target of 20 to 25 billable hours per week creates a sustainable buffer.
+        </p>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Practical Real-World Scenario: Freelance Creative Consultant</h3>
+        <p>
+          Consider a freelance brand consultant targeting $75,000 take-home income. They incur $12,000 in software, hardware, and insurance expenses, face an effective 28% combined tax rate, take 4 weeks off annually (48 working weeks), and bill 25 client hours weekly.
+        </p>
+        <ul style="margin: 1rem 0 1.5rem 1.25rem; line-height: 1.8;">
+          <li><strong>Pre-tax income required:</strong> $75,000 ÷ (1 - 0.28) = $104,167</li>
+          <li><strong>Gross revenue target with expenses:</strong> $104,167 + $12,000 = $116,167</li>
+          <li><strong>Total billable annual hours:</strong> 48 weeks &times; 25 hours = 1,200 billable hours</li>
+          <li><strong>Calculated hourly rate:</strong> $116,167 ÷ 1,200 = <strong>$96.81 / hour</strong> (approx. $775 / 8-hour day)</li>
+        </ul>
+        <p>
+          By charging $97/hour instead of an arbitrary $50/hour, the consultant fully covers business expenses and quarterly tax obligations without compromising personal savings.
+        </p>
+
+        <!-- Ad Placement 3: Within Educational Content -->
+        <div class="ad-container" aria-label="Advertisement">
+          <span class="ad-label">Advertisement</span>
+          <div class="ad-slot" data-slot-key="TOOL_MID_EDITORIAL">
+            <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Frequently Asked Questions</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-summary">Should I quote clients hourly or on a fixed-project basis?</summary>
+            <div class="faq-content">
+              While calculating your internal hourly rate is crucial for understanding your cost of doing business, quoting clients on a fixed-fee or value-based basis is often superior. Use our <a href="/tools/project-quote-calculator/">Project Quote Calculator</a> to bundle labor hours, scope buffers, and project margins into transparent project proposals.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">What should I include in annual business expenses?</summary>
+            <div class="faq-content">
+              Include software subscriptions (Adobe Creative Cloud, GitHub, Figma), accounting and legal fees, computer hardware depreciation, web hosting, office supplies, health insurance premiums, retirement contributions, and co-working or desk rental fees.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">How much should I set aside for taxes?</summary>
+            <div class="faq-content">
+              In most jurisdictions, self-employed professionals are responsible for both employee and employer portions of payroll/social insurance taxes, in addition to state or federal income taxes. A conservative estimate is generally 25% to 35% of pre-tax revenue, but you should always consult a local tax professional.
+            </div>
+          </details>
+        </div>
+
+        <!-- Ad Placement 4: Before Related Tools Section -->
+        <div class="ad-container" aria-label="Advertisement">
+          <span class="ad-label">Advertisement</span>
+          <div class="ad-slot" data-slot-key="TOOL_BEFORE_RELATED">
+            <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+          </div>
+        </div>
+
+        <!-- Related Tools -->
+        <div style="margin-top: 3.5rem;">
+          <h3 style="margin-bottom: 1.25rem;">Related Freelance &amp; Business Tools</h3>
+          <div class="grid grid-3">
+            <a href="/tools/project-quote-calculator/" class="clay-card cat-card">
+              <h4 class="cat-card-title">Project Quote Calculator</h4>
+              <p class="cat-card-desc">Turn your hourly rate into profitable fixed-price proposals with scope buffers.</p>
+              <span class="cat-card-count">Try Tool →</span>
+            </a>
+            <a href="/tools/profit-margin-calculator/" class="clay-card cat-card">
+              <h4 class="cat-card-title">Profit Margin Calculator</h4>
+              <p class="cat-card-desc">Calculate retail and service markups and protect commercial margins.</p>
+              <span class="cat-card-count">Try Tool →</span>
+            </a>
+            <a href="/tools/ad-revenue-calculator/" class="clay-card cat-card">
+              <h4 class="cat-card-title">Ad Revenue Calculator</h4>
+              <p class="cat-card-desc">Forecast digital publishing income from RPM and impression metrics.</p>
+              <span class="cat-card-count">Try Tool →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool Disclaimer -->
+        <div class="privacy-callout" style="margin-top: 2.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div class="privacy-callout-text">
+            <strong>Financial Disclaimer:</strong> This calculator provides mathematical estimates based on user-supplied variables for informational planning. It does not provide certified legal, tax, or financial advice. Consult an accountant or financial advisor for personalized tax planning.
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand" aria-label="KLYVORQ Homepage">
+            <div class="brand-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span class="brand-name">KLYVORQ</span>
+          </a>
+          <p>Smart tools. Simple solutions.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li>
+            <li><a href="/tools/project-quote-calculator/">Project Quote Calculator</a></li>
+            <li><a href="/tools/utm-campaign-builder/">UTM Campaign Builder</a></li>
+            <li><a href="/tools/ad-revenue-calculator/">Ad Revenue Calculator</a></li>
+            <li><a href="/tools/profit-margin-calculator/">Profit Margin &amp; Markup</a></li>
+            <li><a href="/tools/sensitive-info-scanner/">Sensitive Info Scanner</a></li>
+            <li><a href="/tools/password-strength-generator/">Password Generator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links">
+            <li><a href="/category/business-tools/">Business Tools</a></li>
+            <li><a href="/category/freelancer-tools/">Freelancer Tools</a></li>
+            <li><a href="/category/marketing-tools/">Marketing Tools</a></li>
+            <li><a href="/category/privacy-security-tools/">Privacy &amp; Security</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="/about/">About KLYVORQ</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Service</a></li>
+            <li><a href="/disclaimer/">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 KLYVORQ. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="search-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" class="search-modal-input" placeholder="Search tools..." autocomplete="off">
+        <button type="button" class="search-close-btn" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="search-results-list" role="listbox"></ul>
+    </div>
+  </div>
+
+  <script src="/assets/js/search-data.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/tools/freelance-rate.js"></script>
+</body>
+</html>

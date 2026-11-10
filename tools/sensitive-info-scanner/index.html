@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensitive Information Scanner — Client-Side PII &amp; Text Redactor | KLYVORQ</title>
+  <meta name="description" content="Inspect and redact sensitive information locally in your browser. Detect emails, phone numbers, IPs, and payment cards. Zero cloud uploads or server storage.">
+  <link rel="canonical" href="https://klyvorq.vercel.app/tools/sensitive-info-scanner/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://klyvorq.vercel.app/tools/sensitive-info-scanner/">
+  <meta property="og:title" content="Sensitive Information Scanner — Client-Side PII &amp; Text Redactor | KLYVORQ">
+  <meta property="og:description" content="Inspect and redact sensitive information locally in your browser. Zero cloud uploads.">
+  <meta property="og:site_name" content="KLYVORQ">
+  <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicons -->
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/img/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <script src="/assets/js/config.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Sensitive Information Scanner",
+        "operatingSystem": "All modern browsers",
+        "applicationCategory": "SecurityApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Inspect text locally in your browser for emails, phone numbers, IPv4 addresses, and payment card patterns with client-side redaction."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://klyvorq.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tools",
+            "item": "https://klyvorq.vercel.app/tools/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Sensitive Information Scanner",
+            "item": "https://klyvorq.vercel.app/tools/sensitive-info-scanner/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+      <a href="/" class="brand" aria-label="KLYVORQ Homepage">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">KLYVORQ</span>
+          <span class="brand-tagline-micro">Smart tools</span>
+        </div>
+      </a>
+
+      <nav role="navigation" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/tools/" class="nav-link active">Tools</a></li>
+          <li><a href="/category/" class="nav-link">Categories</a></li>
+          <li><a href="/about/" class="nav-link">About</a></li>
+          <li><a href="/contact/" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" aria-label="Open search dialog (Ctrl + K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="search-label">Search</span>
+          <kbd class="kbd-shortcut">Ctrl K</kbd>
+        </button>
+
+        <button type="button" class="btn-icon theme-toggle-btn" aria-label="Switch theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section">
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item"><a href="/category/privacy-security-tools/">Privacy &amp; Security Tools</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item active" aria-current="page">Sensitive Info Scanner</li>
+        </ol>
+      </nav>
+
+      <header class="tool-header">
+        <div class="tool-badge-row">
+          <span class="badge">Privacy &amp; Security</span>
+          <span class="badge badge-sand">100% Client-Side</span>
+          <span class="badge badge-sand">Luhn Algorithm</span>
+        </div>
+        <h1 class="tool-header-title" style="margin-top:0.75rem;">Sensitive Information Scanner</h1>
+        <p class="tool-header-lead">
+          Inspect text for personal identifiable information (PII) before sharing notes, support logs, or documentation. Detects emails, phone numbers, IPv4 addresses, and payment card sequences locally in your browser.
+        </p>
+
+        <!-- Prominent Privacy Assurance -->
+        <div class="privacy-callout">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+          <div class="privacy-callout-text">
+            <strong>Your text is processed locally in your browser and is not uploaded by this tool.</strong> Zero network packets leave your computer.
+          </div>
+        </div>
+      </header>
+
+      <!-- Ad Placement 1: After Tool Header -->
+      <div class="ad-container" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot" data-slot-key="TOOL_AFTER_HEADER">
+          <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+        </div>
+      </div>
+
+      <div class="tool-workspace">
+        <!-- Input Area -->
+        <section class="tool-input-card" aria-labelledby="scanner-input-heading">
+          <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+            <h2 id="scanner-input-heading" style="font-size: 1.2rem; margin:0;">Text Input</h2>
+            <div class="flex gap-sm">
+              <button type="button" id="btn-sample" class="btn btn-outline" style="padding:0.4rem 0.85rem; font-size:0.8rem; min-height:36px;">Load Sample Data</button>
+              <button type="button" id="btn-clear" class="btn btn-secondary" style="padding:0.4rem 0.85rem; font-size:0.8rem; min-height:36px;">Clear Text</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="scanner-text-input" class="sr-only">Paste or enter text to scan</label>
+            <textarea id="scanner-text-input" class="form-control scanner-textarea" placeholder="Paste or type text here to scan for emails, phone numbers, IPv4 addresses, and potential payment card patterns locally..."></textarea>
+          </div>
+
+          <!-- Detection Counters -->
+          <div class="scanner-stats-grid">
+            <div class="scanner-stat-badge">
+              <div class="scanner-stat-num" id="count-emails">0</div>
+              <div class="scanner-stat-label">Emails</div>
+            </div>
+            <div class="scanner-stat-badge">
+              <div class="scanner-stat-num" id="count-phones">0</div>
+              <div class="scanner-stat-label">Phones</div>
+            </div>
+            <div class="scanner-stat-badge">
+              <div class="scanner-stat-num" id="count-ips">0</div>
+              <div class="scanner-stat-label">IPv4 Addrs</div>
+            </div>
+            <div class="scanner-stat-badge">
+              <div class="scanner-stat-num" id="count-cards">0</div>
+              <div class="scanner-stat-label">Card Matches</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Redacted Preview Panel -->
+        <aside class="tool-result-card" aria-labelledby="scanner-results-heading">
+          <div class="result-card-header">
+            <h2 id="scanner-results-heading" class="result-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Masked Preview</span>
+            </h2>
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--color-text-subtle); margin-bottom: 0.75rem;">
+            Automatically masked preview with sensitive tokens redacted:
+          </div>
+
+          <div class="masked-preview-box" id="masked-preview-box" role="region" aria-live="polite">
+            Enter or paste text above to scan for sensitive information locally.
+          </div>
+
+          <button type="button" id="btn-mask-copy" class="btn btn-primary copy-btn" style="margin-top: 1.5rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Redacted Text</span>
+          </button>
+        </aside>
+      </div>
+
+      <!-- Ad Placement 2: After Tool Workspace -->
+      <div class="ad-container" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot" data-slot-key="TOOL_AFTER_WORKSPACE">
+          <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+        </div>
+      </div>
+
+      <!-- Editorial & Details -->
+      <section class="tool-editorial" aria-labelledby="scanner-editorial-heading">
+        <h2 id="scanner-editorial-heading">How Client-Side Scanning Works</h2>
+        <p>
+          Unlike cloud-based security tools that send your text to third-party language models or backend APIs for processing, KLYVORQ executes 100% of its regex evaluation and Luhn verification locally in your web browser.
+        </p>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Supported Detection Patterns</h3>
+        <ul style="margin-left: 1.5rem; color: var(--color-text-muted); line-height: 1.7;">
+          <li><strong>Email Addresses:</strong> Compliant RFC regex scanning for user and domain email patterns.</li>
+          <li><strong>Phone Numbers:</strong> Detects North American (NANP), UK, and international E.164 phone formats.</li>
+          <li><strong>IPv4 Addresses:</strong> Scans for four dot-separated decimal octets and strictly validates each octet is between 0 and 255.</li>
+          <li><strong>Payment Card Patterns:</strong> Matches 13 to 19 digit number sequences and validates the sequence format against the international <em>Luhn Modulo 10 Checksum Algorithm</em>.</li>
+        </ul>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Practical Real-World Scenario: Sanitizing Developer Support Logs</h3>
+        <p>
+          Consider a software engineer preparing to post a crash trace to an open GitHub issue or vendor forum. Raw logs often contain incidental user credentials and internal server IPs:
+        </p>
+        <div class="clay-card" style="margin-bottom: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6;">
+          <code>User session crash for account dev@clientcompany.com on gateway 192.168.1.104; support contact: +1 (555) 019-2834.</code>
+        </div>
+        <p>
+          Running this text through the Sensitive Info Scanner immediately flags:
+        </p>
+        <ul style="margin: 0.5rem 0 1.25rem 1.25rem; line-height: 1.8;">
+          <li><strong>1 Email Address:</strong> <code>dev@clientcompany.com</code></li>
+          <li><strong>1 Valid IPv4 Address:</strong> <code>192.168.1.104</code></li>
+          <li><strong>1 International Phone Number:</strong> <code>+1 (555) 019-2834</code></li>
+        </ul>
+        <p>
+          The engineer can sanitize or redact these sensitive tokens with one click before publishing, eliminating compliance risks without sending private data to an external server.
+        </p>
+
+        <!-- Ad Placement 3: Within Educational Content -->
+        <div class="ad-container" aria-label="Advertisement">
+          <span class="ad-label">Advertisement</span>
+          <div class="ad-slot" data-slot-key="TOOL_MID_EDITORIAL">
+            <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Frequently Asked Questions</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-summary">Does a payment card match mean the card is active or valid?</summary>
+            <div class="faq-content">
+              No. The tool performs a mathematical <strong>format checksum validation</strong> (Luhn algorithm) only. It does not check bank issuing status, expiration dates, CVVs, account balances, or fraud databases. It is designed solely to help you sanitize text before publishing logs or customer tickets.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Can I safely paste confidential customer notes?</summary>
+            <div class="faq-content">
+              Yes. You can verify this by checking your browser's Developer Tools (Network Tab): zero network requests are initiated when typing or scanning text in this tool.
+            </div>
+          </details>
+        </div>
+
+        <!-- Ad Placement 4: Before Related Tools Section -->
+        <div class="ad-container" aria-label="Advertisement">
+          <span class="ad-label">Advertisement</span>
+          <div class="ad-slot" data-slot-key="TOOL_BEFORE_RELATED">
+            <span class="ad-slot-placeholder">Reserved ad space &bull; Sponsored placement</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 3.5rem;">
+          <h3 style="margin-bottom: 1.25rem;">Related Privacy &amp; Utility Tools</h3>
+          <div class="grid grid-3">
+            <a href="/tools/password-strength-generator/" class="clay-card cat-card">
+              <h4 class="cat-card-title">Password Generator &amp; Checker</h4>
+              <p class="cat-card-desc">Generate secure passwords in-browser using window.crypto.</p>
+              <span class="cat-card-count">Try Tool →</span>
+            </a>
+            <a href="/tools/utm-campaign-builder/" class="clay-card cat-card">
+              <h4 class="cat-card-title">UTM Campaign Builder</h4>
+              <p class="cat-card-desc">Create clean tracking links with zero tracking telemetry.</p>
+              <span class="cat-card-count">Try Tool →</span>
+            </a>
+            <a href="/tools/freelance-rate-calculator/" class="clay-card cat-card">
+              <h4 class="cat-card-title">Freelance Rate Calculator</h4>
+              <p class="cat-card-desc">Calculate sustainable rates privately in your browser.</p>
+              <span class="cat-card-count">Try Tool →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="privacy-callout" style="margin-top: 2.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div class="privacy-callout-text">
+            <strong>Security Disclaimer:</strong> This scanner is a text-sanitization utility based on regex pattern matching and Luhn format validation. It does not provide certified compliance scanning (e.g. PCI-DSS, HIPAA) or comprehensive security/fraud detection. Users are responsible for inspecting their own output.
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand" aria-label="KLYVORQ Homepage">
+            <div class="brand-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span class="brand-name">KLYVORQ</span>
+          </a>
+          <p>Smart tools. Simple solutions.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/tools/sensitive-info-scanner/">Sensitive Info Scanner</a></li>
+            <li><a href="/tools/password-strength-generator/">Password Generator</a></li>
+            <li><a href="/tools/utm-campaign-builder/">UTM Campaign Builder</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links">
+            <li><a href="/category/business-tools/">Business Tools</a></li>
+            <li><a href="/category/freelancer-tools/">Freelancer Tools</a></li>
+            <li><a href="/category/marketing-tools/">Marketing Tools</a></li>
+            <li><a href="/category/privacy-security-tools/">Privacy &amp; Security</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="/about/">About KLYVORQ</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Service</a></li>
+            <li><a href="/disclaimer/">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 KLYVORQ. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="search-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" class="search-modal-input" placeholder="Search tools..." autocomplete="off">
+        <button type="button" class="search-close-btn" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="search-results-list" role="listbox"></ul>
+    </div>
+  </div>
+
+  <script src="/assets/js/search-data.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/tools/sensitive-scanner.js"></script>
+</body>
+</html>
