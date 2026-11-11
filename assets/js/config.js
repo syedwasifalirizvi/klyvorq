@@ -25,9 +25,8 @@ window.KLYVORQ_CONFIG = {
   GA4_ID: "G-FJKVBHND0V",
 
   // Google AdSense Publisher ID (e.g. "ca-pub-1234567890123456")
-  // Leave null or set to placeholder string while unverified.
-  // Script will STRICTLY load ONLY if non-null and matches exact ca-pub-\d{16} format.
-  ADSENSE_PUB_ID: null,
+  // Configured with active AdSense Publisher ID:
+  ADSENSE_PUB_ID: "ca-pub-3864854315704031",
 
   // Centralized Ad Slot IDs for all responsive placements
   ADSENSE_SLOTS: {

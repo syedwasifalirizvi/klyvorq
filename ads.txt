@@ -1,16 +1,2 @@
-# KLYVORQ ads.txt Template
-# ==============================================================================
-# INSTRUCTIONS FOR MONETIZATION SETUP:
-# When you receive an approved Google AdSense publisher account:
-# 1. Replace 'ca-pub-0000000000000000' with your actual 16-digit AdSense Publisher ID.
-# 2. Uncomment the line below by removing the leading '#' symbol.
-# 3. Deploy to the root of your domain so it resolves at https://yourdomain.com/ads.txt
-#
-# Format: <Field #1>, <Field #2>, <Field #3>, <Field #4>
-# Field #1: Domain name of the advertising system (e.g. google.com)
-# Field #2: Publisher Account ID
-# Field #3: Type of Relationship (DIRECT or RESELLER)
-# Field #4: Certification Authority ID (Google's is f08c47fec0942fa0)
-# ==============================================================================
-
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# KLYVORQ Authorized Digital Sellers (ads.txt)
+google.com, pub-3864854315704031, DIRECT, f08c47fec0942fa0

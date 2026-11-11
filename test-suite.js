@@ -432,9 +432,15 @@ const configContent = fs.readFileSync(path.resolve('assets/js/config.js'), 'utf8
 const mainCssContent = fs.readFileSync(path.resolve('assets/css/main.css'), 'utf8');
 
 // Config tests
-assert(configContent.includes('ADSENSE_PUB_ID: null'), 'config.js keeps ADSENSE_PUB_ID null by default (unconfigured)');
+assert(configContent.includes('ADSENSE_PUB_ID: "ca-pub-3864854315704031"'), 'config.js has ADSENSE_PUB_ID configured to ca-pub-3864854315704031');
 assert(configContent.includes('ca-pub-\\d{16}'), 'config.js strictly validates ca-pub format with 16 digits before loading');
+assert(configContent.includes('crossOrigin = "anonymous"'), 'config.js sets crossOrigin = anonymous on AdSense script');
+assert(configContent.includes("!document.getElementById('adsense-script')"), 'config.js guards against duplicate AdSense script loading');
 assert(configContent.includes('ADSENSE_SLOTS: {'), 'config.js contains centralized ADSENSE_SLOTS dictionary');
+
+// ads.txt validation
+const adsTxtContent = fs.readFileSync(path.resolve('ads.txt'), 'utf8');
+assert(adsTxtContent.includes('google.com, pub-3864854315704031, DIRECT, f08c47fec0942fa0'), 'ads.txt contains valid publisher direct line');
 
 const expectedSlotKeys = [
   'HOMEPAGE_AFTER_HERO',
