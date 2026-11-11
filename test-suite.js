@@ -434,9 +434,22 @@ const mainCssContent = fs.readFileSync(path.resolve('assets/css/main.css'), 'utf
 // Config tests
 assert(configContent.includes('ADSENSE_PUB_ID: "ca-pub-3864854315704031"'), 'config.js has ADSENSE_PUB_ID configured to ca-pub-3864854315704031');
 assert(configContent.includes('ca-pub-\\d{16}'), 'config.js strictly validates ca-pub format with 16 digits before loading');
-assert(configContent.includes('crossOrigin = "anonymous"'), 'config.js sets crossOrigin = anonymous on AdSense script');
-assert(configContent.includes("!document.getElementById('adsense-script')"), 'config.js guards against duplicate AdSense script loading');
+assert(!configContent.includes("document.createElement('script')\n      adScript.id = 'adsense-script'"), 'config.js does NOT dynamically inject duplicate AdSense script tag');
 assert(configContent.includes('ADSENSE_SLOTS: {'), 'config.js contains centralized ADSENSE_SLOTS dictionary');
+
+// Static AdSense <script> presence in <head> across all HTML pages
+htmlFiles.forEach(file => {
+  const content = fs.readFileSync(path.resolve(file), 'utf8');
+  const headMatch = content.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+  assert(headMatch !== null, `${file} contains <head> section`);
+  const headContent = headMatch[1];
+  assert(
+    headContent.includes('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864854315704031') &&
+    headContent.includes('crossorigin="anonymous"') &&
+    headContent.includes('async'),
+    `${file} contains physical AdSense script in <head> for site verification`
+  );
+});
 
 // ads.txt validation
 const adsTxtContent = fs.readFileSync(path.resolve('ads.txt'), 'utf8');

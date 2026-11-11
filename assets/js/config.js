@@ -88,17 +88,9 @@ window.KLYVORQ_CONFIG = {
     }
   }
 
-  // 3. Google AdSense script injection & slot population - ONLY if valid 16-digit ca-pub supplied
+  // 3. Google AdSense slot population - script is physically placed in <head> for AdSense crawler verification
   if (config.ADSENSE_PUB_ID && /^ca-pub-\d{16}$/.test(config.ADSENSE_PUB_ID.trim())) {
     const pubId = config.ADSENSE_PUB_ID.trim();
-    if (!document.getElementById('adsense-script')) {
-      const adScript = document.createElement('script');
-      adScript.id = 'adsense-script';
-      adScript.async = true;
-      adScript.crossOrigin = "anonymous";
-      adScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pubId}`;
-      document.head.appendChild(adScript);
-    }
 
     // Populate active ad units once DOM is loaded
     function activateAdSlots() {
