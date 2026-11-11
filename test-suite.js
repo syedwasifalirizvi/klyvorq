@@ -432,28 +432,35 @@ const configContent = fs.readFileSync(path.resolve('assets/js/config.js'), 'utf8
 const mainCssContent = fs.readFileSync(path.resolve('assets/css/main.css'), 'utf8');
 
 // Config tests
-assert(configContent.includes('ADSENSE_PUB_ID: "ca-pub-3864854315704031"'), 'config.js has ADSENSE_PUB_ID configured to ca-pub-3864854315704031');
+assert(configContent.includes('ADSENSE_PUB_ID: "ca-pub-3864854315074031"'), 'config.js has ADSENSE_PUB_ID configured to ca-pub-3864854315074031');
+assert(!configContent.includes('3864854315704031'), 'config.js does NOT contain old wrong ID');
 assert(configContent.includes('ca-pub-\\d{16}'), 'config.js strictly validates ca-pub format with 16 digits before loading');
 assert(!configContent.includes("document.createElement('script')\n      adScript.id = 'adsense-script'"), 'config.js does NOT dynamically inject duplicate AdSense script tag');
 assert(configContent.includes('ADSENSE_SLOTS: {'), 'config.js contains centralized ADSENSE_SLOTS dictionary');
 
-// Static AdSense <script> presence in <head> across all HTML pages
+// Static AdSense <script> and <meta> presence in <head> across all HTML pages
 htmlFiles.forEach(file => {
   const content = fs.readFileSync(path.resolve(file), 'utf8');
+  assert(!content.includes('3864854315704031'), `${file} does NOT contain old wrong ID 3864854315704031`);
   const headMatch = content.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
   assert(headMatch !== null, `${file} contains <head> section`);
   const headContent = headMatch[1];
   assert(
-    headContent.includes('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864854315704031') &&
+    headContent.includes('<meta name="google-adsense-account" content="ca-pub-3864854315074031">'),
+    `${file} contains google-adsense-account meta tag in <head>`
+  );
+  assert(
+    headContent.includes('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864854315074031') &&
     headContent.includes('crossorigin="anonymous"') &&
     headContent.includes('async'),
-    `${file} contains physical AdSense script in <head> for site verification`
+    `${file} contains physical AdSense script in <head> with correct publisher ID`
   );
 });
 
 // ads.txt validation
 const adsTxtContent = fs.readFileSync(path.resolve('ads.txt'), 'utf8');
-assert(adsTxtContent.includes('google.com, pub-3864854315704031, DIRECT, f08c47fec0942fa0'), 'ads.txt contains valid publisher direct line');
+assert(adsTxtContent.includes('google.com, pub-3864854315074031, DIRECT, f08c47fec0942fa0'), 'ads.txt contains valid publisher direct line with correct ID');
+assert(!adsTxtContent.includes('3864854315704031'), 'ads.txt does NOT contain old wrong ID');
 
 const expectedSlotKeys = [
   'HOMEPAGE_AFTER_HERO',

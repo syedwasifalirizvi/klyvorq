@@ -26,7 +26,7 @@ window.KLYVORQ_CONFIG = {
 
   // Google AdSense Publisher ID (e.g. "ca-pub-1234567890123456")
   // Configured with active AdSense Publisher ID:
-  ADSENSE_PUB_ID: "ca-pub-3864854315704031",
+  ADSENSE_PUB_ID: "ca-pub-3864854315074031",
 
   // Centralized Ad Slot IDs for all responsive placements
   ADSENSE_SLOTS: {

@@ -1,2 +1,2 @@
 # KLYVORQ Authorized Digital Sellers (ads.txt)
-google.com, pub-3864854315704031, DIRECT, f08c47fec0942fa0
+google.com, pub-3864854315074031, DIRECT, f08c47fec0942fa0
