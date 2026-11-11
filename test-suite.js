@@ -539,6 +539,23 @@ toolIndexPaths.forEach(toolPath => {
   assert(content.includes('Disclaimer') || content.includes('privacy-callout'), `${toolPath} includes transparent disclaimer`);
 });
 
+// 14. GOOGLE ANALYTICS 4 (GA4) CONFIGURATION INTEGRITY
+console.log('\nTEST GROUP 14: Google Analytics 4 (GA4) Configuration Integrity');
+assert(configContent.includes('GA4_ID: "G-FJKVBHND0V"'), 'config.js has GA4_ID set to exactly G-FJKVBHND0V');
+assert(!configContent.includes('GTM-NCGXBMFS'), 'config.js does NOT contain disallowed GTM ID GTM-NCGXBMFS');
+assert(configContent.includes('/^G-[A-Z0-9]+$/i'), 'config.js validates GA4 Measurement ID pattern');
+assert(configContent.includes("https://www.googletagmanager.com/gtag/js?id="), 'config.js injects official gtag.js script');
+assert(configContent.includes("script.id = 'ga4-script'"), 'config.js assigns ga4-script ID to prevent duplicate loading');
+assert(configContent.includes("!document.getElementById('ga4-script')"), 'config.js checks element ID before script creation (single load per page)');
+assert(configContent.includes("gtag('config', gaId,"), 'config.js configures measurement ID in gtag');
+
+// Verify all HTML pages include config.js and none contain GTM-NCGXBMFS
+htmlFiles.forEach(file => {
+  const content = fs.readFileSync(path.resolve(file), 'utf8');
+  assert(content.includes('/assets/js/config.js'), `${file} loads /assets/js/config.js for GA4 tracking`);
+  assert(!content.includes('GTM-NCGXBMFS'), `${file} does NOT contain disallowed GTM ID GTM-NCGXBMFS`);
+});
+
 // Summary
 console.log('\n======================================================');
 console.log(` RESULTS: ${passedTests} passed, ${failedTests} failed.`);

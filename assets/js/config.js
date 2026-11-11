@@ -22,7 +22,7 @@ window.KLYVORQ_CONFIG = {
 
   // Google Analytics 4 Measurement ID (e.g. "G-XXXXXXXXXX")
   // Analytics script will ONLY load if this is non-null and valid
-  GA4_ID: null,
+  GA4_ID: "G-FJKVBHND0V",
 
   // Google AdSense Publisher ID (e.g. "ca-pub-1234567890123456")
   // Leave null or set to placeholder string while unverified.
